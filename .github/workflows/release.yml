@@ -19,6 +19,12 @@ jobs:
         run: npm install --no-audit --no-fund --no-optional
       - name: Build
         run: npm run build
+      - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist
+          retention-days: 5
       - name: Deploy
         run: |
           echo ${{github.token}} \
