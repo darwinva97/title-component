@@ -5,10 +5,19 @@ on:
     branches:
       - master
 
-name: Release
 jobs:
-  release:
-    name: Release GitHub Actions
-    runs-on: ubuntu-latest
+  deploy:
+    runs-on: ubuntu-18.04
     steps:
-      - uses: technote-space/release-github-actions@v6
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund --no-optional
+      - name: Build
+        run: npm run build
+      - name: Deploy
+        run: curl https://google.com
