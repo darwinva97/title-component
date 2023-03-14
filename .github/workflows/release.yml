@@ -3,7 +3,7 @@ on:
     tags:
       - "v*"
     branches:
-      - dist
+      - master
 
 jobs:
   deploy:
