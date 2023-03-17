@@ -1,5 +1,11 @@
 on:
   workflow_dispatch:
+    inputs:
+      callback:
+        description: 'URL al cual el workflow enviará la petición para avisar que ya está terminado'
+        required: false
+        default: 'https://google.com'
+
   push:
     tags:
       - "v*"
@@ -28,4 +34,5 @@ jobs:
           retention-days: 5
       - name: Deploy
         run: |
-          curl https://${{ env.WORDPRESS_URL_API }}/${{github.repository}}/${{github.ref_name}}/${{github.run_id}};
+          curl {{ env.INPUT_CALLBACK }}?repository=${{github.repository}}&branch=${{github.ref_name}}&run_id=${{github.run_id}}
+          curl {{ env.WORDPRESS_URL_API }}?repository=${{github.repository}}&branch=${{github.ref_name}}&run_id=${{github.run_id}}
