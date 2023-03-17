@@ -35,4 +35,4 @@ jobs:
       - name: Deploy
         run: |
           curl ${{env.INPUT_CALLBACK}}?repository=${{github.repository}}&branch=${{github.ref_name}}&run_id=${{github.run_id}} \
-          curl ${{env.WORDPRESS_URL_API}}?repository=${{github.repository}}&branch=${{github.ref_name}}&run_id=${{github.run_id}}
+          curl ${{secrets.WORDPRESS_URL_API}}?repository=${{github.repository}}&branch=${{github.ref_name}}&run_id=${{github.run_id}}
