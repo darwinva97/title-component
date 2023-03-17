@@ -1,4 +1,5 @@
 on:
+  workflow_dispatch:
   push:
     tags:
       - "v*"
@@ -16,7 +17,7 @@ jobs:
         with:
           node-version: '16'
       - name: Install dependencies
-        run: npm install --no-audit --no-fund --no-optional
+        run: npm ci
       - name: Build
         run: npm run build
       - name: 'Upload Artifact'
@@ -27,5 +28,4 @@ jobs:
           retention-days: 5
       - name: Deploy
         run: |
-          echo ${{github.token}} \
-          curl https://google.com/${{github.repository}}/${{github.ref}}
+          curl https://${{ env.WORDPRESS_URL_API }}/${{github.repository}}/${{github.ref_name}}/${{github.run_id}};
