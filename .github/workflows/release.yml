@@ -36,3 +36,4 @@ jobs:
         run: |
           curl -X POST ${{ secrets.WORDPRESS_URL_API }} \
             -d '{"branch":"${{github.ref_name}}","run_id":"${{github.run_id}}","repository":"${{github.repository}}"}' \
+
